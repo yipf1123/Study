@@ -10,20 +10,39 @@ window.onload=function(){
 
     // 아이디창 클릭시
  
-    // 최초 한번만 클릭시에 나타남
-    let FC_id = true;
-    input_id.addEventListener('click', function() {
-      if (FC_id) {
-       id.style.boxShadow = '0 2px 0 #0074e9';
-       FC_id = false;
-      }
-    });
+    let inputFocused = false;
 
-    // blur : HTML 요소에서 포커스가 빠져나가면 발생하는 이벤트
-    input_id.addEventListener('blur', function() {
-      id_error.style.display = 'block';
-      id.style.boxShadow = '0 2px 0 #e7223d';
-    });
+    input_email.addEventListener('focus',function(){
+        inputFocused = true;
+        input_email.style.boxShadow = '0 2px 0 #0074e9'
+    })
+    
+    input_email.addEventListener('blur',function(){
+        inputFocused = false;
+        input_email.style.boxShadow = 'none';
+        if (input_email.value == '') {
+            email_error.style.display = 'none';
+        } else if (!isValidEmail(input_email.value)) {
+            email_error.style.display = 'block';
+            input_email.style.boxShadow = '0 2px 0 #e7223d';
+        } else {
+            email_error.style.display = 'none';
+        }
+    })
+    
+    document.addEventListener('click', function(event) {
+        if (!input_email.contains(event.target) && !inputFocused) {
+            if (input_email.value != '' && !isValidEmail(input_email.value)) {
+                email_error.style.display = 'block';
+                input_email.style.boxShadow = '0 2px 0 #e7223d';
+            }
+        }
+    })
+    
+    function isValidEmail(email) {
+        const emailRegExp = /^[A-Za-z0-9_\.\-]+@[A-Za-z0-9\-]+\.[A-Za-z0-9\-]+/;
+        return emailRegExp.test(email);
+    }
     
     
 

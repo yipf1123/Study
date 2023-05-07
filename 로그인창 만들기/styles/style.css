@@ -15,10 +15,14 @@ main #loginFrm ul li {
     margin-bottom: 10px;
     position: relative;
 }
+main #loginFrm ul  #id{}
+main #loginFrm ul  #pw{}
+
 main #loginFrm ul .error {
     color: #e7223d; padding: 10px; display: none;
     padding: 1px 15px;
-    margin-bottom: 5px
+    margin-bottom: 10px;
+    font-size: 0.8rem;
 }
 main #loginFrm ul .id_error {border: 0;}
 main #loginFrm ul .pw_error {border: 0;}
